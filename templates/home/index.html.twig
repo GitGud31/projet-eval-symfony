@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 0em auto; font: 18px/1.5 sans-serif; position: static;}
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="relative example-wrapper">
+   <div class="absolute text-center">
+        <h1 class="mx-auto">Bienvenue a board</h1>
+   </div>
+    <img  class="h-2/3 w-full" src={{asset("/assets/home-car.png")}} alt="">
+</div>
+{% endblock %}
