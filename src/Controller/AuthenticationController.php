@@ -43,10 +43,13 @@ class AuthenticationController extends AbstractController
 
             $entityManager->persist($membre);
             $entityManager->flush();
+
+            return $this->redirectToRoute('home');
         }
 
-        return $this->redirectToRoute('home', [
-            'controller_name' => 'HomeController',
+        return $this->render('sign_up/index.html.twig', [
+            'controller_name' => 'AuthenticationController',
+            'form_value' => $formValue,
         ]);
     }
 }
