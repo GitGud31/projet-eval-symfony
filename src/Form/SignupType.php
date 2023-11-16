@@ -23,7 +23,7 @@ class SignupType extends AbstractType
             ->add('email', EmailType::class)
             ->add('civilite', ChoiceType::class, [
                 'choices' => [
-                    'Homme' => 'h   omme',
+                    'Homme' => 'homme',
                     'Femme' => 'femme',
                 ],
                 'expanded' => false,
