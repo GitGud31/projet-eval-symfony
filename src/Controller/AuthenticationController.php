@@ -11,25 +11,36 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthenticationController extends AbstractController
 {
-    #[Route('/connexion', name: 'connexion')]
-    public function connexion(): Response
+    #[Route('/connexion', name: 'connexion', methods: ['GET', 'POST'])]
+    public function connexion(AuthenticationUtils $authenticationUtils): Response
     {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         $formValue = $this->createform(AuthenticationType::class);
 
         # dd($formValue);
 
+        $lastPseudo = $authenticationUtils->getLastUsername();
+
         return $this->render('authentication/index.html.twig', [
             'controller_name' => 'AuthenticationController',
-            'form_value' => $formValue,
+            'last_username' => $lastUsername,
+            'error' => $error,
         ]);
     }
 
     #[Route('/signup', name: 'signup')]
-    public function signup(Request                $request, UserPasswordHasherInterface $passwordHasher,
-                           EntityManagerInterface $entityManager): Response
+    public function signup(Request                     $request,
+                           UserPasswordHasherInterface $passwordHasher,
+                           EntityManagerInterface      $entityManager): Response
     {
         # A new membre is automatically registered with DateTime Now.
         $membre = new Membre();
