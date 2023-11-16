@@ -17,8 +17,7 @@ class AuthenticationType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('mdp', PasswordType::class)
-            ->add('Connexion', SubmitType::class)
-        ;
+            ->add('Connexion', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

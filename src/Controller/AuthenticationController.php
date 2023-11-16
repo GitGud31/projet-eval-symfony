@@ -24,12 +24,6 @@ class AuthenticationController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $formValue = $this->createform(AuthenticationType::class);
-
-        # dd($formValue);
-
-        $lastPseudo = $authenticationUtils->getLastUsername();
-
         return $this->render('authentication/index.html.twig', [
             'controller_name' => 'AuthenticationController',
             'last_username' => $lastUsername,

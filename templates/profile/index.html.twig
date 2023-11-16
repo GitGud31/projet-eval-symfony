@@ -26,10 +26,19 @@
             padding: 1em 0.5em;
         }
 
+        #edit_profile_civilite {
+            background-color: rgba(128, 128, 128, 0.35);
+            border-radius: 10px;
+            margin: 0.5em;
+            padding: 1em 0.5em;
+        }
+
         #edit_profile_Editer {
-            width: 50%;
-            margin: 0.4em 0;
-            padding: 0.4em;
+            position: relative;
+            left: 2.5%;
+            width: 10%;
+            margin: 0.5em;
+            padding: 0.5em;
             background-color: #72729e;
             border-radius: 10px;
             color: white;
@@ -44,7 +53,7 @@
         </div>
 
         {# profile data #}
-        <div class="flex flex-col w-[60%] p-12">
+        <div class="flex flex-col w-[60%] px-12">
             {{ form_start(form_value) }}
 
             <div class="flex flex-row">
@@ -68,20 +77,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-row">
-                <div class="flex flex-col grow pr-2">
-                    {{ form_label(form_value.status, 'Status') }}
-                    {{ form_widget(form_value.status) }}
-                </div>
-                <div class="flex flex-col grow pl-2">
-                    {{ form_label(form_value.civilite, 'Civilité') }}
-                    {{ form_widget(form_value.civilite) }}
-                </div>
+            <div class="py-2">
+                {{ form_label(form_value.civilite, 'Civilité') }}
+                {{ form_widget(form_value.civilite) }}
             </div>
-
-            {{ form_end(form_value) }}
         </div>
 
 
+        {{ form_end(form_value) }}
     </div>
+
 {% endblock %}

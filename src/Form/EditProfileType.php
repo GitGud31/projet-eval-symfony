@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,8 +21,17 @@ class EditProfileType extends AbstractType
             ->add('nom', TextType::class, ['attr' => ['required' => true]])
             ->add('prenom', TextType::class, ['attr' => ['required' => true]])
             ->add('email', EmailType::class, ['attr' => ['required' => true]])
-            ->add('status', NumberType::class, ['attr' => ['required' => true]])
-            ->add('civilite', TextType::class, ['attr' => ['required' => true]])
+            ->add('civilite', ChoiceType::class,
+                [
+                    'attr' => ['required' => true],
+                    'choices' => [
+                        'Homme' => 'homme',
+                        'Femme' => 'femme',
+                    ],
+                    'expanded' => false,
+                    'multiple' => false,
+                    'label' => 'Civilité',
+                ])
             ->add('Editer', SubmitType::class);
     }
 
