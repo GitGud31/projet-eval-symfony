@@ -49,13 +49,35 @@
             border-radius: 10px;
             color: white;
         }
+
+        .profile-btn {
+            position: absolute;
+            top: 1%;
+            right: 3%;
+            padding: 0.7em;
+            z-index: 10;
+            background-color: white;
+            border-radius: 19px;
+        }
     </style>
 
     <div class="relative example-wrapper
             flex flex-col items-center">
+
+        {# my profile #}
+        <div class="profile-btn">
+            <a href={{ path('profile') }}>
+                <p class="text-center text-[#72729e]">
+                    Mon profile
+                </p>
+            </a>
+        </div>
+
         {# title #}
         <div class="absolute mx-auto pt-[7%]">
-            <h1 class="text-7xl font-bold text-white shadow-xl">Bienvenue à bord</h1>
+            <h1 class="text-7xl font-bold text-white shadow-xl">
+                Bienvenue à bord
+            </h1>
         </div>
 
         {# form #}
