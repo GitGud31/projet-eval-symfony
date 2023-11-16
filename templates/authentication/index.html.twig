@@ -22,8 +22,7 @@
             font-size: 2rem;
         }
 
-        #authentication_pseudo,
-        #authentication_mdp {
+        input {
             padding: 0.5em;
             margin: 0.1em;
             border: 3px solid #729e87;
@@ -31,8 +30,8 @@
             width: 100%;
         }
 
-        #authentication_Connexion {
-            width: 50%;
+        .authentication_btn {
+            width: 100%;
             margin-top: 1em;
             padding: 0.4em;
             background-color: #729e87;
@@ -58,17 +57,6 @@
         <div class="flex flex-col w-[50%]
         m-auto p-16 shadow-xl
         bg-white rounded-xl">
-            {#
-            {{ form_start(form_value) }}
-            {{ form_label(form_value.pseudo, 'Pseudo') }}
-            {{ form_widget(form_value.pseudo) }}
-
-            {{ form_label(form_value.mdp, 'Mot de passe') }}
-            {{ form_widget(form_value.mdp) }}
-
-            {{ form_errors(form_value) }}
-            {{ form_end(form_value) }}
-            #}
 
             <form action="{{ path('connexion') }}" method="post">
                 <label for="username">Pseudo:</label>
@@ -80,7 +68,7 @@
                 {# If you want to control the URL the user is redirected to on success #}
                 <input type="hidden" name="_target_path" value="/profile">
 
-                <button type="submit">Login</button>
+                <button type="submit" class="authentication_btn">Connexion</button>
             </form>
         </div>
 
