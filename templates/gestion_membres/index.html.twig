@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionMembresController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 0 auto;
+            font: 18px/1.5 sans-serif;
+            position: absolute;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper bg-gray-50 h-screen w-screen">
+        {# title #}
+        <div class="font-bold text-left px-12 py-8">
+            <h1 class="text-4xl font-bold">Gestion des membres !</h1>
+        </div>
+
+        {# add membre #}
+
+        {# list of members #}
+        <div class="flex flex-col overflow-x-auto mx-8">
+            <div class="sm:-mx-6 lg:-mx-8 bg-green-50">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-left text-sm font-light dark:border-neutral-500">
+                            <thead class="border-b font-medium dark:border-neutral-500">
+                            <tr>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Id</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Pseudo</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Prenom</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Nom</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Email</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Civilité</th>
+                                <th scope="col" class="border-r dark:border-neutral-500 px-6 py-4">Date de création</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for membre in membres %}
+                                <tr class="border-b dark:border-neutral-500">
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.id }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.pseudo }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.prenom }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.nom }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.email }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.civilite }}
+                                    </td>
+                                    <td class="border-r dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                        {{ membre.dateEnregistrement|date("m/d/Y") }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
