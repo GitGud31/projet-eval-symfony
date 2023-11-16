@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,9 +21,15 @@ class SignupType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email', EmailType::class)
-            ->add('status')
-            //->add('date_enregistrement')
-            ->add('civilite')
+            ->add('civilite', ChoiceType::class, [
+                'choices' => [
+                    'Homme' => 'h   omme',
+                    'Femme' => 'femme',
+                ],
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'Civilité',
+            ])
             ->add('Creer', SubmitType::class);
     }
 

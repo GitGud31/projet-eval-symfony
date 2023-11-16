@@ -17,12 +17,6 @@ class AuthenticationType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('mdp', PasswordType::class)
-            //->add('nom')
-            //->add('prenom')
-            //->add('email')
-            //->add('status')
-            //->add('date_enregistrement')
-            //->add('civilite')
             ->add('Connexion', SubmitType::class)
         ;
     }
