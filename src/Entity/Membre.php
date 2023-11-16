@@ -45,9 +45,15 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Commande::class)]
     private Collection $vehicule;
 
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
+
     public function __construct()
     {
         $this->vehicule = new ArrayCollection();
+
+        // By default, users are not admin.
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
@@ -188,7 +194,11 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [];
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function eraseCredentials()

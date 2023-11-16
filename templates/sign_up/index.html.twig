@@ -67,18 +67,23 @@
             {{ form_widget(form_value.mdp) }}
 
             <div class="flex flex-row">
-                <div class="flex flex-col grow pr-2">
-                    {{ form_label(form_value.nom, 'Nom') }}
-                    {{ form_widget(form_value.nom) }}
-                </div>
                 <div class="flex flex-col grow pl-2">
                     {{ form_label(form_value.prenom, 'Prénom') }}
                     {{ form_widget(form_value.prenom) }}
+                </div>
+                <div class="flex flex-col grow pr-2">
+                    {{ form_label(form_value.nom, 'Nom') }}
+                    {{ form_widget(form_value.nom) }}
                 </div>
 
                 <div class="flex flex-col grow pl-2">
                     {{ form_label(form_value.civilite, 'Civilité') }}
                     {{ form_widget(form_value.civilite) }}
+                </div>
+
+                <div class="flex flex-col grow pl-2">
+                    {{ form_label(form_value.status, 'Status') }}
+                    {{ form_widget(form_value.status) }}
                 </div>
             </div>
 
