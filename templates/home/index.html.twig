@@ -67,9 +67,14 @@
         {# my profile #}
         <div class="profile-btn">
             <a href={{ path('profile') }}>
-                <p class="text-center text-[#72729e]">
-                    Mon profile
-                </p>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <p class="text-center text-[#72729e]">{{ app.user.pseudo }}</p>
+                {% else %}
+                    <p class="text-center text-[#72729e]">
+                        Mon profile
+                    </p>
+                {% endif %}
+
             </a>
         </div>
 
@@ -83,7 +88,6 @@
         {# form #}
         <div class="flex flex-row justify-center absolute mx-auto pt-[17%]">
             <div class="flex flex-row p-16 shadow-xl bg-white rounded-md">
-
                 {{ form_start(form_value) }}
                 {{ form_label(form_value.date_heure_depart, 'De', {'attr': {'class': 'form-home-label'}}) }}
                 {{ form_widget(form_value.date_heure_depart, {'attr': {'class': 'form-home-input'}}) }}
