@@ -52,6 +52,13 @@
             <h1 class="text-4xl font-bold">Votre profile !</h1>
         </div>
 
+        {# logout #}
+        <div class="absolute top-8 right-12 p-4
+                    rounded-xl shadow-xl text-white
+                    bg-red-500">
+            <a href="logout">Logout</a>
+        </div>
+
         {# profile data #}
         <div class="flex flex-col w-[60%] px-12">
             {{ form_start(form_value) }}
@@ -82,7 +89,6 @@
                 {{ form_widget(form_value.civilite) }}
             </div>
         </div>
-
 
         {{ form_end(form_value) }}
     </div>
