@@ -43,14 +43,14 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $civilite = null;
 
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Commande::class)]
-    private Collection $vehicule;
+    private Collection $commandes;
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     public function __construct()
     {
-        $this->vehicule = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
 
         // By default, users are not admin.
         $this->roles = ['ROLE_USER'];
@@ -160,27 +160,27 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Commande>
      */
-    public function getVehicule(): Collection
+    public function getCommandes(): Collection
     {
-        return $this->vehicule;
+        return $this->commandes;
     }
 
-    public function addVehicule(Commande $vehicule): static
+    public function addCommandes(Commande $commande): static
     {
-        if (!$this->vehicule->contains($vehicule)) {
-            $this->vehicule->add($vehicule);
-            $vehicule->setMembre($this);
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setMembre($this);
         }
 
         return $this;
     }
 
-    public function removeVehicule(Commande $vehicule): static
+    public function removeCommande(Commande $commande): static
     {
-        if ($this->vehicule->removeElement($vehicule)) {
+        if ($this->commandes->removeElement($commande)) {
             // set the owning side to null (unless already changed)
-            if ($vehicule->getMembre() === $this) {
-                $vehicule->setMembre(null);
+            if ($commande->getMembre() === $this) {
+                $commande->setMembre(null);
             }
         }
 
