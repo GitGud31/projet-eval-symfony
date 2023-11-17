@@ -210,4 +210,9 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->getPseudo();
     }
+
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
+    }
 }

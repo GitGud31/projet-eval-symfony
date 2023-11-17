@@ -41,6 +41,13 @@ class GestionMembresController extends AbstractController
                          MembreRepository   $membreRepository,
                          CommandeRepository $commandeRepository)
     {
-        dd($membre);
+        // dd($membre);
+
+        return $this->render(
+            'gestion_membres/edit_membre.html.twig', [
+                'controller_name' => 'GestionMembresController',
+                'membre' => $membre,
+            ]
+        );
     }
 }
