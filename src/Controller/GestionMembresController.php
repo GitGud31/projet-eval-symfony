@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Membre;
+use App\Form\EditProfileType;
 use App\Repository\CommandeRepository;
 use App\Repository\MembreRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,15 +40,24 @@ class GestionMembresController extends AbstractController
     }
 
     #[Route('/member/edit/{id}', name: 'edit_membre')]
-    public function edit(Membre             $membre,
-                         MembreRepository   $membreRepository,
-                         CommandeRepository $commandeRepository)
+    public function edit(Membre                 $membre,
+                         EntityManagerInterface $entityManager,
+                         Request                $request)
     {
-        // dd($membre);
+        $formValue = $this->createForm(EditProfileType::class, $membre);
+        $formValue->handleRequest($request);
+        if ($formValue->isSubmitted() && $formValue->isValid()) {
+            $entityManager->flush();
+
+            flash()->addSuccess('Your changes were saved!');
+
+            return $this->redirectToRoute('gestion_membres');
+        }
 
         return $this->render(
             'gestion_membres/edit_membre.html.twig', [
                 'controller_name' => 'GestionMembresController',
+                'form_value' => $formValue,
                 'membre' => $membre,
             ]
         );

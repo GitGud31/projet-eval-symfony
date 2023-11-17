@@ -32,7 +32,7 @@ class EditProfileType extends AbstractType
                     'multiple' => false,
                     'label' => 'Civilité',
                 ])
-            ->add('Editer', SubmitType::class);
+            ->add('editer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
