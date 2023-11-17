@@ -30,6 +30,17 @@ class GestionMembresController extends AbstractController
     {
         $commandeRepository->removeByMemberId($membre->getId());
         $membreRepository->remove($membre);
+
+        // flash()->addSuccess("Membre" . ${$membre->getEmail()} . " à été supprimé(e).");
+
         return $this->redirectToRoute('gestion_membres');
+    }
+
+    #[Route('/member/edit/{id}', name: 'edit_membre')]
+    public function edit(Membre             $membre,
+                         MembreRepository   $membreRepository,
+                         CommandeRepository $commandeRepository)
+    {
+        dd($membre);
     }
 }
