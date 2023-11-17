@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Membre;
+use App\Repository\CommandeRepository;
 use App\Repository\MembreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,5 +21,15 @@ class GestionMembresController extends AbstractController
             'controller_name' => 'GestionMembresController',
             'membres' => $membres,
         ]);
+    }
+
+    #[Route('/member/delete/{id}', name: 'member_delete')]
+    public function delete(Membre             $membre,
+                           MembreRepository   $membreRepository,
+                           CommandeRepository $commandeRepository): Response
+    {
+        $commandeRepository->removeByMemberId($membre->getId());
+        $membreRepository->remove($membre);
+        return $this->redirectToRoute('gestion_membres');
     }
 }

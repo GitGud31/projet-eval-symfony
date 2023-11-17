@@ -21,6 +21,18 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
+    public function removeByMemberId(int $membreId): void
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('
+            DELETE FROM App\Entity\Commande c
+            WHERE c.id_member = :memberId
+        ');
+
+        $query->setParameter('memberId', $membreId);
+    }
+
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */
