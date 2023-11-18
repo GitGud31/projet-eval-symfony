@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 0 auto;
+            font: 18px/1.5 sans-serif;
+            position: absolute;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        #add_vehicule_titre,
+        #add_vehicule_marque,
+        #add_vehicule_modele,
+        #add_vehicule_description,
+        #add_vehicule_prix_journalier,
+        #add_vehicule_photo {
+            padding: 0.5em;
+            margin: 0.1em;
+            border: 3px solid black;
+            border-radius: 19px;
+            width: 100%;
+        }
+
+        #add_vehicule_Ajouter {
+            width: 100%;
+            margin-top: 1em;
+            padding: 0.4em;
+            background-color: #729e87;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+
+    <div class="example-wrapper bg-blue-50 h-screen w-screen">
+        {# add vehicule #}
+        <div class="font-bold text-left px-12 pt-12">
+            <h1 class="text-4xl font-bold">Ajouter un véhicule !</h1>
+        </div>
+
+        {{ form_start(form_value) }}
+        <div class="flex flex-row justify-between">
+
+            {# titre, modele, marque, prix #}
+            <div class="grow flex flex-col pl-8 pt-4 pr-32">
+                <div class="flex flex-row">
+                    <div class="flex flex-col grow p-1">
+                        {{ form_label(form_value.titre, 'Titre') }}
+                        {{ form_widget(form_value.titre) }}
+                    </div>
+                    <div class="flex flex-col grow p-1">
+                        {{ form_label(form_value.marque, 'Marque') }}
+                        {{ form_widget(form_value.marque) }}
+                    </div>
+                </div>
+
+                <div class="flex flex-row">
+                    <div class="flex flex-col grow p-1">
+                        {{ form_label(form_value.modele, 'Modèle') }}
+                        {{ form_widget(form_value.modele) }}
+                    </div>
+                    <div class="flex flex-col grow p-1">
+                        {{ form_label(form_value.prix_journalier, 'Prix') }}
+                        {{ form_widget(form_value.prix_journalier) }}
+                    </div>
+                </div>
+
+                <div class="flex justify-start w-[50%]">
+                    {{ form_widget(form_value.Ajouter) }}
+                </div>
+            </div>
+
+            {# photo and description #}
+            <div class="grow flex flex-col pr-8 pt-4">
+                <div class="flex flex-col p-1">
+                    {{ form_label(form_value.description, 'Description') }}
+                    {{ form_widget(form_value.description) }}
+                </div>
+
+                <div class="flex flex-col p-1">
+                    {{ form_label(form_value.photo, 'Photo') }}
+                    {{ form_widget(form_value.photo) }}
+                </div>
+            </div>
+
+        </div>
+        {{ form_errors(form_value) }}
+        {{ form_end(form_value) }}
+    </div>
+{% endblock %}
