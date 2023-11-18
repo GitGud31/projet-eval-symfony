@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GestionMembresController extends AbstractController
 {
     #[Route('/gestion/membres', name: 'gestion_membres')]
-    public function index(
+    public function gestion_membre(
         Request                     $request,
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface      $entityManager,
@@ -50,7 +50,7 @@ class GestionMembresController extends AbstractController
     }
 
     #[Route('/gestion/member/delete/{id}', name: 'member_delete')]
-    public function delete(Membre             $membre,
+    public function deleteMembre(Membre             $membre,
                            MembreRepository   $membreRepository,
                            CommandeRepository $commandeRepository): Response
     {
@@ -63,7 +63,7 @@ class GestionMembresController extends AbstractController
     }
 
     #[Route('/gestion/membre/edit/{id}', name: 'edit_membre')]
-    public function edit(Membre                 $membre,
+    public function editMembre(Membre                 $membre,
                          EntityManagerInterface $entityManager,
                          Request                $request)
     {
