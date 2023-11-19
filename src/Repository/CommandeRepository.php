@@ -33,6 +33,18 @@ class CommandeRepository extends ServiceEntityRepository
         $query->setParameter('memberId', $membreId);
     }
 
+    public function removeByVehiculeId(int $vehiculeId): void
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('
+            DELETE FROM App\Entity\Commande c
+            WHERE c.id_vehicule = :vehiculeId
+        ');
+
+        $query->setParameter('vehiculeId', $vehiculeId);
+    }
+
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */
