@@ -21,8 +21,11 @@ class EditVehiculeType extends AbstractType
             ->add('marque', TextType::class)
             ->add('modele', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('photo', FileType::class)
             ->add('prix_journalier', IntegerType::class)
+            ->add('photo', FileType::class, [
+                'label' => 'Photo',
+                'mapped' => false,
+            ])
             ->add('editer', SubmitType::class);;
     }
 

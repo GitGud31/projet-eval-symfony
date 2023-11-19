@@ -76,11 +76,28 @@ class GestionVoituresController extends AbstractController
     #[Route('/gestion/vehicule/edit/{id}', name: 'edit_vehicule')]
     public function editVehicule(Vehicule               $vehicule,
                                  EntityManagerInterface $entityManager,
-                                 Request                $request)
+                                 Request                $request,
+                                 SluggerInterface       $slugger)
     {
         $formValue = $this->createForm(EditVehiculeType::class, $vehicule);
         $formValue->handleRequest($request);
         if ($formValue->isSubmitted() && $formValue->isValid()) {
+            $file = $formValue->get('photo')->getData();
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+                try {
+                    $file->move(
+                        $this->getParameter('vehicules_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $vehicule->setPhoto($newFilename);
+            }
+
             $entityManager->flush();
 
             flash()->addSuccess('Your changes were saved!');
