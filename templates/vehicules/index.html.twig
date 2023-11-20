@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VehiculesController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 0 auto;
+            font: 18px/1.5 sans-serif;
+            position: absolute;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        {# title #}
+        <div class="font-bold text-left px-12 py-8">
+            <h1 class="text-4xl font-bold">Les vehicules disponibles !</h1>
+        </div>
+
+        <div class="flex flex-row px-8">
+            {% for vehicule in vehicules %}
+                <div class="max-w-sm rounded-xl m-4
+                border overflow-hidden shadow-lg">
+                    <img class="w-2/3 mx-auto"
+                         src="{{ asset('vehicules_directory/' ~ vehicule.photo) }}">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">{{ vehicule.titre }} / {{ vehicule.marque }}</div>
+                        <div class="font-bold text-md mb-2">{{ vehicule.modele }}</div>
+                        <p class="text-gray-700 text-base">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
+                            perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

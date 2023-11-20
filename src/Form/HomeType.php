@@ -17,11 +17,7 @@ class HomeType extends AbstractType
         $builder
             ->add('date_heure_depart', DateTimeType::class)
             ->add('date_heure_fin', DateTimeType::class)
-            // ->add('prix_total')
-            // ->add('date_enregistrement')
-            // ->add('membre')
-            // ->add('vehicule')
-            ->add('Go', SubmitType::class);
+            ->add('go', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
