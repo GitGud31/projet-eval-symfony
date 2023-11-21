@@ -10,14 +10,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehiculesController extends AbstractController
 {
     #[Route('/vehicules', name: 'vehicules')]
-    public function index(VehiculeRepository $vehiculeRepository): Response
+    public function index(\DateTime          $dateStart,
+                          \DateTime          $dateEnd,
+                          VehiculeRepository $vehiculeRepository): Response
     {
-
         $vehicules = $vehiculeRepository->findAll();
 
         return $this->render('vehicules/index.html.twig', [
             'controller_name' => 'VehiculesController',
             'vehicules' => $vehicules,
+            'dateStart' => $dateStart,
+            'dateEnd' => $dateEnd,
         ]);
     }
 }

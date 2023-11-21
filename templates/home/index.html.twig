@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
     <style>
         .example-wrapper {
             margin: 0 auto;
             font: 18px/1.5 sans-serif;
-            position: absolute;
         }
 
         .example-wrapper code {
@@ -101,5 +98,12 @@
 
         {# background #}
         <img class="h-1/6 w-full" src={{ asset("/assets/home-car.png") }} alt="">
+
+        {% if dateStart is not null and dateEnd is not null %}
+                {% include 'vehicules/index.html.twig' %}
+        {% endif %}
     </div>
+
+
+
 {% endblock %}
