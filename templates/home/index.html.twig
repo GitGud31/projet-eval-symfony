@@ -39,7 +39,7 @@
             border-radius: 10%;
         }
 
-        #home_go {
+        .go-btn {
             width: 50%;
             padding: 0.4em;
             background-color: #72729e;
@@ -77,7 +77,7 @@
         {# title #}
         <div class="absolute mx-auto pt-[7%]">
             <h1 class="text-7xl font-bold text-white shadow-xl">
-                Bienvenue à bord
+                Louez une voiture
             </h1>
         </div>
 
@@ -91,6 +91,10 @@
                 {{ form_label(form_value.date_heure_fin, 'A', {'attr': {'class': 'form-home-label'}}) }}
                 {{ form_widget(form_value.date_heure_fin, {'attr': {'class': 'form-home-input'}}) }}
 
+                <a href="#vehicule-dispo">
+                    {{ form_widget(form_value.go, {'attr': {'class': 'go-btn'}}) }}
+                </a>
+
                 {{ form_errors(form_value) }}
                 {{ form_end(form_value) }}
             </div>
@@ -100,10 +104,8 @@
         <img class="h-1/6 w-full" src={{ asset("/assets/home-car.png") }} alt="">
 
         {% if dateStart is not null and dateEnd is not null %}
-                {% include 'vehicules/index.html.twig' %}
+            {% include 'vehicules/index.html.twig' %}
         {% endif %}
     </div>
-
-
 
 {% endblock %}
