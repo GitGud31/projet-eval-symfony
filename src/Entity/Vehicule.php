@@ -37,12 +37,16 @@ class Vehicule
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_enregistrement = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isRented = null;
+
     #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Commande::class)]
     private Collection $commandes;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+            $this->isRented = false;
     }
 
     public function getId(): ?int
@@ -160,6 +164,18 @@ class Vehicule
                 $commande->setVehicule(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsRented(): ?bool
+    {
+        return $this->isRented;
+    }
+
+    public function setIsRented(?bool $isRented): static
+    {
+        $this->isRented = $isRented;
 
         return $this;
     }
