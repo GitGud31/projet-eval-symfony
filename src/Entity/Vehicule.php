@@ -40,7 +40,7 @@ class Vehicule
     #[ORM\Column(nullable: true)]
     private ?bool $isRented = null;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Commande::class)]
     private Collection $commandes;
 
     public function __construct()

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Vehicule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -25,6 +26,24 @@ class VehiculeRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
+    }
+
+    public function findByCommand(\DateTimeInterface $startDate, \DateTimeInterface $endDate)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $q = $qb->select(array('v'))
+            ->from('App:Vehicule', 'v')
+            ->leftJoin('v.commandes', 'c')
+            ->Andwhere(':startDate NOT BETWEEN c.date_heure_depart AND c.date_heure_fin')
+            ->Andwhere(':endDate NOT BETWEEN c.date_heure_depart AND c.date_heure_fin')
+            ->orWhere('c.date_heure_depart is null')
+            ->setParameter('startDate', $startDate)
+            ->setParameter('endDate', $endDate)
+            ->getQuery();
+
+        return $q->getResult();
     }
 
 //    /**

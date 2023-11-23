@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Vehicule;
 use App\Form\HomeType;
 use App\Repository\VehiculeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,20 +20,18 @@ class HomeController extends AbstractController
         $formValue->handleRequest($request);
 
         if ($formValue->isSubmitted() && $formValue->isValid()) {
-            $vehicules = $vehiculeRepository->findAll();
+            $dateStart = $formValue->get('date_heure_depart')->getData();
+            $dateEnd = $formValue->get('date_heure_fin')->getData();
+
+            $vehicules = $vehiculeRepository->findByCommand($dateStart, $dateEnd);
 
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',
                 'form_value' => $formValue,
                 'vehicules' => $vehicules,
-                'dateStart' => $formValue->get('date_heure_depart')->getData(),
-                'dateEnd' => $formValue->get('date_heure_fin')->getData(),
+                'dateStart' => $dateStart,
+                'dateEnd' => $dateEnd,
             ]);
-
-            /*return $this->forward('App\\Controller\\VehiculesController::index', [
-                'dateStart' => $formValue->get('date_heure_depart')->getData(),
-                'dateEnd' => $formValue->get('date_heure_fin')->getData(),
-            ]);*/
         }
 
         return $this->render('home/index.html.twig', [
