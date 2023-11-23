@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\HomeType;
 use App\Repository\VehiculeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,18 @@ class HomeController extends AbstractController
         if ($formValue->isSubmitted() && $formValue->isValid()) {
             $dateStart = $formValue->get('date_heure_depart')->getData();
             $dateEnd = $formValue->get('date_heure_fin')->getData();
+
+            // Verify that dateEnd is after dateStart
+            if ($dateEnd <= $dateStart) {
+                flash()->addError('End date must be after start date.');
+
+                return $this->render('home/index.html.twig', [
+                    'controller_name' => 'HomeController',
+                    'form_value' => $formValue,
+                    'dateStart' => null,
+                    'dateEnd' => null,
+                ]);
+            }
 
             $vehicules = $vehiculeRepository->findByCommand($dateStart, $dateEnd);
 
