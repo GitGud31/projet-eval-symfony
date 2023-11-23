@@ -15,8 +15,16 @@ class HomeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date_heure_depart', DateTimeType::class)
-            ->add('date_heure_fin', DateTimeType::class)
+            ->add('date_heure_depart', DateTimeType::class, [
+                'html5' => false,
+                'format' => 'yyyy-MM-dd',
+                'data' => new \DateTime(),
+            ])
+            ->add('date_heure_fin', DateTimeType::class, [
+                'html5' => false,
+                'format' => 'yyyy-MM-dd',
+                'data' => new \DateTime(),
+            ])
             ->add('go', SubmitType::class);
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Vehicule;
 use App\Form\HomeType;
 use App\Repository\VehiculeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
