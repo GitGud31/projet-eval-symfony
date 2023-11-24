@@ -27,6 +27,15 @@ class MembreRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function findOneByPsuedo($pseudo): ?Membre
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.pseudo = :pseudo')
+            ->setParameter('pseudo', $pseudo)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Membre[] Returns an array of Membre objects
 //     */
@@ -39,16 +48,6 @@ class MembreRepository extends ServiceEntityRepository
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Membre
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
 //        ;
 //    }
 }
