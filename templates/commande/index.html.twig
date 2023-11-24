@@ -66,10 +66,10 @@
                 </div>
 
                 {# submit button #}
-                <button class="rounded-xl bg-blue-400 mt-4 p-4
-                               text-white shadow-xl">
-                    Commander
-                </button>
+                {{ form_start(form_value) }}
+                {{ form_label(form_value.commander, 'Commander') }}
+                {{ form_widget(form_value.commander) }}
+                {{ form_end(form_value) }}
             </div>
 
             {# vehicule photo #}
