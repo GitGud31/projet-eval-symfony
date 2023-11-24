@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 0 auto;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper px-12">
+        {# title #}
+        <div class="font-bold py-8">
+            <h1 class="text-4xl">Confirmer votre réservation</h1>
+        </div>
+
+        <div class="flex flex-row justify-between">
+            <div class="flex flex-col grow-1">
+                <h3>{{ vehicule.modele }} / {{ vehicule.marque }}</h3>
+                <h3 class="pb-4">{{ vehicule.titre }}</h3>
+
+                {# prix journalier #}
+                <div class="pt-2">
+                    <h4 class="font-bold">Prix journalier</h4>
+                    <p>{{ vehicule.prixJournalier }} euros</p>
+                </div>
+
+                {# description #}
+                <div class="pt-2 w-3/4">
+                    <h4 class="font-bold">Description</h4>
+                    <p>{{ vehicule.description }}</p>
+                </div>
+            </div>
+
+            {# vehicule photo #}
+            <div class="flex justify-center items-center grow-1">
+                <img src="{{ asset('vehicules_directory/' ~ vehicule.photo) }}"
+                     class="w-2/4 h-auto m-0 p-0 ">
+            </div>
+
+        </div>
+
+        {# rent days #}
+        <div class="pt-8">
+            <h4 class="font-bold">Commander pour </h4>
+            <p>{{ interval.days }} jour(s)</p>
+        </div>
+
+        <div class="flex flex-row pt-4">
+            {# from #}
+            <div class="flex flex-col">
+                <h4 class="font-bold">Du </h4>
+                <p>{{ from | date }}</p>
+            </div>
+
+            {# to #}
+            <div class="flex flex-col px-4">
+                <h4 class="font-bold">A </h4>
+                <p>{{ to | date }}</p>
+            </div>
+        </div>
+
+        {# prix total #}
+        <div class="pt-8">
+            <h4 class="font-bold">Prix Total</h4>
+            <p>{{ vehicule.prixJournalier * interval.days }} euros</p>
+        </div>
+
+    </div>
+{% endblock %}

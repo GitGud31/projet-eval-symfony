@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Commande;
+use App\Entity\Vehicule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -44,7 +45,6 @@ class CommandeRepository extends ServiceEntityRepository
 
         $query->setParameter('vehiculeId', $vehiculeId);
     }
-
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */
