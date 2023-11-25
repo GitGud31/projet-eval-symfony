@@ -1,14 +1,22 @@
 # Bienvenue dans mon projet
 
+### to run the project
+ + run : Symfony console doctrine:fixtures:load
+ + start Symfony server:start
+ + launch apache and mysql servers
+
+### Must have 
+ + Symfony: latest version
+ + Php: latest version
+ + Database: Mysql
+
+
 ### lors de l'exécution du projet, par défaut il y aura:
  + compte admin : psuedo : Admin001/mdp : admin
  + 5 comptes réguliers avec Pseudo aléatoire et tous ont le meme mdp : 'notadmin' .
  + 6 véhicules.
 
-### to run the project
- + Symfony: latest version
- + Php: latest version
- + Database: Mysql
+
 
 ### Featueres:
 + Créé/editer/supprimer membre.
