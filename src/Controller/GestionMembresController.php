@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\AddMembreType;
 use App\Form\EditProfileType;
-use App\Form\SignupType;
 use App\Repository\CommandeRepository;
 use App\Repository\MembreRepository;
 use Doctrine\ORM\EntityManagerInterface;

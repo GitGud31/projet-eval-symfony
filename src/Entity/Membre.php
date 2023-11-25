@@ -109,6 +109,13 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setAdminRole(): static
+    {
+        $this->roles[] = 'ROLE_ADMIN';
+
+        return $this;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
