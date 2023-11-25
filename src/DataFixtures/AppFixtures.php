@@ -90,19 +90,12 @@ class AppFixtures extends Fixture
         $titres = ['Occasion', 'New', 'Occasion', 'New', 'Occasion', 'New'];
         $prixJournaliers = [1300, 2700, 5800, 4500, 4100, 6000];
         $descriptions = [
-
-            /*$faker->paragraph(2),
-            $faker->paragraph(1),
-            $faker->paragraph(1),
-            $faker->paragraph(4),
-            $faker->paragraph(4),
-            $faker->paragraph(5),*/
-            'desciption 1',
-            'desciption 2',
-            'desciption 3',
-            'desciption 4',
-            'desciption 5',
-            'desciption 6',
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices eros id erat tempor, et efficitur ex cursus. Proin porta mi quis augue lacinia, sit amet lacinia sem tincidunt.",
         ];
 
         // Get the public directory path
