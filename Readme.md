@@ -4,7 +4,11 @@
  + compte admin : psuedo : Admin001/mdp : admin
  + 5 comptes réguliers avec Pseudo aléatoire et tous ont le meme mdp : 'notadmin' .
  + 6 véhicules.
- 
+
+### to run the project
+ + Symfony: latest version
+ + Php: latest version
+ + Database: Mysql
 
 ### Featueres:
 + Créé/editer/supprimer membre.
