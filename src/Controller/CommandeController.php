@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Vehicule;
 use App\Form\CommandeType;
+use App\Repository\CommandeRepository;
 use App\Repository\MembreRepository;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,14 +16,25 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CommandeController extends AbstractController
 {
-    #[Route('/commande/add/{vehicule_id},from={date_start},to={date_end}', name: 'add_commande')]
-    public function commande(int                    $vehicule_id,
-                             string                 $date_start,
-                             string                 $date_end,
-                             EntityManagerInterface $entityManager,
-                             VehiculeRepository     $vehiculeRepository,
-                             MembreRepository       $membreRepository,
-                             Request                $request): Response
+
+    #[Route('/gestion_commandes', name: 'gestion_commandes')]
+    public function commande(CommandeRepository $commandeRepository): Response
+    {
+        $commandes = $commandeRepository->findAll();
+
+        return $this->render('gestion_commandes/gestion_commandes.html.twig', [
+            'commandes' => $commandes,
+        ]);
+    }
+
+    #[Route('/gestion_commandes/add/{vehicule_id},from={date_start},to={date_end}', name: 'add_commande')]
+    public function addCommande(int                    $vehicule_id,
+                                string                 $date_start,
+                                string                 $date_end,
+                                EntityManagerInterface $entityManager,
+                                VehiculeRepository     $vehiculeRepository,
+                                MembreRepository       $membreRepository,
+                                Request                $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
 
@@ -54,7 +66,7 @@ class CommandeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('commande/index.html.twig', [
+        return $this->render('gestion_commandes/index.html.twig', [
             'controller_name' => 'CommandeController',
             'form_value' => $formValue,
             'vehicule' => $vehicule,
@@ -63,5 +75,14 @@ class CommandeController extends AbstractController
             'from' => $from,
             'to' => $to,
         ]);
+    }
+
+    #[Route('/gestion_commandes/delete/{id}', name: 'delete_commande')]
+    public function deleteCommande(int                $id,
+                                   CommandeRepository $commandeRepository): Response
+    {
+        $commandeRepository->removeByCommandeId($id);
+
+        return $this->redirectToRoute('gestion_commandes');
     }
 }
