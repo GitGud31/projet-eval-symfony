@@ -46,8 +46,7 @@ class AppFixtures extends Fixture
         // homme ou femme
         $adminMembre->setCivilite("homme");
         $adminMembre->setDateEnregistrement(new \DateTime());
-        $adminMembre->setMdp("admin");
-        //$this->passwordHasher->hashPassword($adminMembre, $adminMembre->getMdp());
+        $adminMembre->setMdp($this->passwordHasher->hashPassword($adminMembre, "admin"));
 
         // make this membre admin
         $adminMembre->setAdminRole();
@@ -76,7 +75,7 @@ class AppFixtures extends Fixture
 
             $membre->setDateEnregistrement(new \DateTime());
             $membre->setMdp($faker->password);
-            //$this->passwordHasher->hashPassword($membre, $membre->getMdp());
+            $membre->setMdp($this->passwordHasher->hashPassword($membre, "notadmin"));
 
             $manager->persist($membre);
         }
