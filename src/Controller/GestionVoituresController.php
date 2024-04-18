@@ -36,8 +36,8 @@ class GestionVoituresController extends AbstractController
             $file = $formValue->get('photo')->getData();
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+                $extension= pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $newFilename = $originalFilename . '-' . uniqid() . '.' . $extension;
                 try {
                     $file->move(
                         $this->getParameter('vehicules_directory'),
