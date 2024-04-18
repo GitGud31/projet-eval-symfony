@@ -65,7 +65,7 @@
         <div class="profile-btn">
             <a href={{ path('profile') }}>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <p class="text-center text-[#72729e]">{{ app.user.pseudo }}</p>
+                    <p class="text-center text-[#72729e]">{{ app.user.pseudo | raw }}</p>
                 {% else %}
                     <p class="text-center text-[#72729e]">
                         Mon profile
