@@ -1,9 +1,16 @@
 # Bienvenue dans mon projet
 
 ### to run the project
- + run : Symfony console doctrine:fixtures:load
- + start Symfony server:start
- + launch apache and mysql servers
+Clone repo
+Launch apache and mysql servers
+
+- composer update
+- php bin/console d:database:create
+- php bin/console make:migration
+- php bin/console d:mi:m
+- Symfony console doctrine:fixtures:load
+- Symfony serve
+
 
 ### Must have 
  + Symfony: latest version
